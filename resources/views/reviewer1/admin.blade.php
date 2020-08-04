@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -11,7 +10,6 @@
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('style/style.css') }}" />
-        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
         <script src="{{ asset('jquery/jquery.js') }}"></script>
         <script src="{{ asset('javascript/validation.js') }}"></script>
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
@@ -31,26 +29,24 @@
                     <ul class="navbar-nav ml-auto">
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/home">Home</a>
+                            <a class="nav-link" href="/reviewer1/home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/list">list</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/admin/add">Add</a>
+                            <a class="nav-link" href="/reviewer1/list">list</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position:relative; padding-left:50px;">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position:relative; padding-left:50px;">
                                 <img src="/avatars/{{Auth::user()->avtar}}" class="profileimg">
                                 Welcome | Mr {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>
                                     {{ __('Logout') }}
                                 </a></li>
-                                <li><a class="dropdown-item" href="/admin/profile" ><i class="fa fa-user"></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="/reviewer/profile" ><i class="fa fa-"></i>Profile</a></li>
+
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>

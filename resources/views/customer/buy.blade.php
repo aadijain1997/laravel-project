@@ -1,7 +1,6 @@
 @extends('customer.admin')
 @section('content')
 
-@if(Session::get('key'))
 <div class="alert">
 @if(Session::get('status'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -30,7 +29,7 @@
       <td>{{$item->books}}</td>
       <td>{{$item->price}}</td>
       <td>{{$item->total}}</td>
-      <td><a href='/customer/buydelete/{{$item->id}}'><i class="fa fa-remove"></i></a></td>
+      <td><a href='/customer/buydelete/{{$item->id}}/{{$item->title}}'><i class="fa fa-remove"></i></a></td>
     </tr>
     @endforeach
   </tbody>
@@ -39,9 +38,6 @@
   <a href="/customer/buynow"><button class="btn btn-primary">Buy now</button></a>
 </div>
 
-@else
-<h1 class="nothing">Nothing in Cart </h1>
-@endif
 @endsection
 
 

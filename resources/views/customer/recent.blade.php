@@ -10,27 +10,23 @@
   </div>
 @endif
 </div>
-<h1>List of all Books</h1>
+<h1>Your recent Buy's</h1>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">Title</th>
       <th scope="col">Books</th>
       <th scope="col">Price</th>
-      <th scope="col">Status</th>
-      <th scope="col">No of oderded books</th>
-      <th scope="col">operations</th>
+      <th scope="col">Operations</th>
     </tr>
   </thead>
   <tbody>
     @foreach($data as $item)
     <tr>
       <th scope="row">{{$item->title}}</th>
-      <td>{{$item->file}}</td>
-      <td>{{$item->price}}</td>
-      <td>{{$item->status}}</td>
-      <td>{{$item->no_of_oders}}</td>
-      <td><a href="/customer/add/{{$item->id}}"><i class="fa fa-shopping-cart"></i></a></td>
+      <td>{{$item->books}}</td>
+      <td>{{$item->total}}</td>
+      <td><a href="/customer/recentdel/{{$item->id}}"><i class="fa fa-remove"></i></a></td>
     </tr>
     @endforeach
   </tbody>

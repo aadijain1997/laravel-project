@@ -39,6 +39,9 @@ class LoginController extends Controller
             case 'customer':
                  return   $this->redirectTo = '/customer';
                 break;
+            case 'reviewer1':
+                return   $this->redirectTo = '/reviewer1';
+                break;
             default:
                  return $this->redirectTo = '/login';
         }

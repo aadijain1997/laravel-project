@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 
 use App\author;
+use Auth;
+use Image;
 
 class AuthorController extends Controller
 {
@@ -17,14 +19,20 @@ class AuthorController extends Controller
     }
     function authorlist()
     {
-        $data = author::all();
-        return view('author/list', ["data" => $data]);
+        $count = DB::table('authors')->count();
+        if($count == 0) {
+            return view('author/list1');
+         }else {
+            $data = author::all();
+            return view('author/list', ["data" => $data]);
+         }
     }
 
     function authoradd(Request $req)
     {
         $resto = new author;
         $resto->name = $req->input('name');
+        $resto->name = implode(',', $resto->name);
         $resto->title = $req->input('title');
         if ($req->hasFile('file')) {
             $file = $req->file('file');
@@ -32,6 +40,7 @@ class AuthorController extends Controller
             $file->move('storage/', $filename);
             $resto->file = $filename;
         }
+        $resto->reviewer_name = $req->input('reviewer_name');
         $resto->price = $req->input('price');
         $req->session()->flash('status', 'book added successfully');
         $resto->save();
@@ -47,7 +56,7 @@ class AuthorController extends Controller
     function edit($id)
     {
         $data = author::find($id);
-        return view('author/edit', ['data' => $data]);
+        return view('author/edit', ['data' => $data ]);
     }
     function update(Request $req, $id)
     {
@@ -58,15 +67,31 @@ class AuthorController extends Controller
             $resto = $filename;
         }
         $form_data = array(
-            'name' =>   $req->name,
-            'title' =>   $req->title,
+            'name' =>   implode(',', $req->name),
             'file'  =>   $resto,
+            'reviewer_name' =>   $req->reviewer_name,
             'price' =>   $req->price,
-            'status_id' =>   "not-reviewed",
+            'status_id' =>   "Pending",
             'comment' => " "
         );
         $resto = author::where('id', $id)->update($form_data);
         session()->flash('status', 'Author has been updated');
         return redirect('author/list');
+    }
+
+    function avtar(){
+        return view('/author/profile',array('user'=> Auth::user()));
+    }
+     
+    function profile(Request $req){
+        if ($req->hasFile('avtar')) {
+            $file = $req->file('avtar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(300,300)->save(public_path('/avatars/'.$filename));
+            $user = Auth::user();
+            $user->avtar = $filename;
+            $user->save();
+        }
+        return view('/author/profile',array('user'=> Auth::user()));
     }
 }

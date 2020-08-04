@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('style/style.css') }}" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
         <script src="{{ asset('jquery/jquery.js') }}"></script>
         <script src="{{ asset('javascript/validation.js') }}"></script>
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
@@ -39,20 +41,22 @@
                             <a class="nav-link" href="/author/add">Add</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre  style="position:relative; padding-left:50px;">
+                                <img src="/avatars/{{Auth::user()->avtar}}" class="profileimg">
                                 Welcome | Mr {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>
                                     {{ __('Logout') }}
-                                </a>
+                                </a></li>
+                                <li><a class="dropdown-item" href="/author/profile" ><i class="fa fa-user"></i>Profile</a></li>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                            </div>
+                            </ul>
                         </li>
                     </ul>
                 </div>

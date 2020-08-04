@@ -8,27 +8,27 @@ use App\author;
 use Auth;
 use Image;
 
-class ReviewerController extends Controller
+class ReviewerrController extends Controller
 {
     public function index()
     {
-        return view('/reviewer/home');
+        return view('/reviewer1/home');
     }
     function reviewerlist()
     {
-        $user = author::where('reviewer_name', '=', 'reviewer')->first();
+        $user = author::where('reviewer_name', '=', 'reviewer1')->first();
         if ($user === null) {
-            return view('/reviewer/list1');
+            return view('/reviewer1/list1');
         }
         else{
-            $data=DB::table("authors")->where('reviewer_name','reviewer')->get();
-            return view('/reviewer/list', ["data" => $data]);
+            $data=DB::table("authors")->where('reviewer_name','reviewer1')->get();
+            return view('/reviewer1/list', ["data" => $data]);
         }
     }
     function edit($id)
-    { 
+    {
         $data = author::find($id);
-        return view('/reviewer/edit', ['data' => $data]);
+        return view('/reviewer1/edit', ['data' => $data]);
     }
     function update(Request $req){
         if(isset($_GET["editcomment"]))
@@ -45,11 +45,11 @@ class ReviewerController extends Controller
     public function view($id)
     {
         $data = author::find($id);
-        return view('/reviewer/show', ['data' => $data]);
+        return view('/reviewer1/show', ['data' => $data]);
     }
 
     function avtar(){
-        return view('/reviewer/profile',array('user'=> Auth::user()));
+        return view('/reviewer1/profile',array('user'=> Auth::user()));
     }
      
     function profile(Request $req){
@@ -61,6 +61,6 @@ class ReviewerController extends Controller
             $user->avtar = $filename;
             $user->save();
         }
-        return view('/reviewer/profile',array('user'=> Auth::user()));
+        return view('/reviewer1/profile',array('user'=> Auth::user()));
     }
 }

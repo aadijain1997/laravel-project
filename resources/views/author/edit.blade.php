@@ -8,7 +8,11 @@
         @csrf
         <div class="form-group">
             <label>Name </label>
-            <input type="text" name="name"  class="form-control name" value="{{$data->name}}" required placeholder="Enter name">
+            <select class="selectpicker form-control chosen-select" multiple="multiple"  name="name[]" >
+                <option value="aditya" selected="selected">{{ Auth::user()->name }}</option>
+                <option value="ashish">Ashish</option>
+                <option value="ankit">Ankit</option>
+            </select>
             <span class="help-block name" ></span>
         </div>
         <div class="form-group">
@@ -20,6 +24,13 @@
             <label>Attachment </label>
             <input type="file" name="file" class="form-control file" value="{{ $data->file }}" required placeholder="Enter Attachment">
             <span class="help-block role" ></span>
+        </div>
+        <div class="form-group">
+            <label>Attachment </label>
+            <select name="reviewer_name" id="reviewer_name" class="form-control editrole" value="{{$data->reviewer_name}}" required>
+                <option value="reviewer" {{ old('reviewer_name', $data->reviewer_name) == 'reviewer' ? 'selected' : '' }}>Reviewer</option>
+                <option value="reviewer1" {{ old('reviewer_name', $data->reviewer_name) == 'reviewer1' ? 'selected' : '' }}>Reviewer1</option>              
+            </select>
         </div>
         <div class="form-group">
             <label>Price </label>

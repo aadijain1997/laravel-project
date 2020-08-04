@@ -1,4 +1,4 @@
-@extends('reviewer.admin')
+@extends('reviewer1.admin')
 
 @section('content')
 <h1>your Reviewer</h1>
@@ -7,11 +7,13 @@
         <input type="hidden" class="reviewerid" value="{{$data->id}}">
         <div class="form-group">
             <label>status </label>
-            <select id="status_id" class="form-control reviewerstatus_id" name="status_id" value="{{$data->status_id}}">
-                <option value="In-progress" {{ old('status_id', $data->status_id) == 'In-progress' ? 'selected' : '' }}>In-progress</option>
-                <option value="Approved" {{ old('status_id', $data->status_id) == 'Approved' ? 'selected' : '' }}>Approved</option>
-                <option value="Rejected" {{ old('status_id', $data->status_id) == 'Rejected' ? 'selected' : '' }}>Rejected</option>
+            <select id="status_id" class="form-control reviewerstatus_id" name="status_id">
+                <option value="Not-reviewed"  selected="selected">Not-reviewed</option>
+                <option value="In-progress" selected="selected">In-progress</option>
+                <option value="Approved" selected="selected">Approved</option>
+                <option value="Rejected" selected="selected">Rejected</option>
             </select>
+
         </div>
 
         <div class="form-group">

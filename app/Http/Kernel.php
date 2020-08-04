@@ -49,6 +49,9 @@ class Kernel extends HttpKernel
         'customer'=>[
             'reviewer'=>\App\Http\Middleware\customer::class,
         ],
+        'reviewer1'=>[
+            'reviewer1'=>\App\Http\Middleware\reviewer1::class,
+        ],
 
         'api' => [
             'throttle:60,1',

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\user;
+use Auth;
+use Image;
 
 
 
@@ -56,5 +58,21 @@ class AdminController extends Controller
         }
         else
         echo "wrong";
+    }
+
+    function avtar(){
+        return view('/admin/profile',array('user'=> Auth::user()));
+    }
+     
+    function profile(Request $req){
+        if ($req->hasFile('avtar')) {
+            $file = $req->file('avtar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(300,300)->save(public_path('/avatars/'.$filename));
+            $user = Auth::user();
+            $user->avtar = $filename;
+            $user->save();
+        }
+        return view('/admin/profile',array('user'=> Auth::user()));
     }
 }

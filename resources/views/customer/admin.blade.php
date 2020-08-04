@@ -38,21 +38,26 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/customer/buy">Cart</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/customer/recent">Recent-oders</a>
+                        </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position:relative; padding-left:50px;">
+                                <img src="/avatars/{{Auth::user()->avtar}}" class="profileimg">
                                 Welcome | Mr {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>
                                     {{ __('Logout') }}
-                                </a>
+                                </a></li>
+                                <li><a class="dropdown-item" href="/customer/profile" ><i class="fa fa-user"></i>Profile</a></li>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                            </div>
+                            </ul>
                         </li>
                     </ul>
                 </div>
