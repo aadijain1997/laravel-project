@@ -33,7 +33,7 @@ class AdminController extends Controller
             'confirm-password' => 'required'
         ],
         [
-            'name.regex' => 'Please enter only charcter.',
+            'name.regex' => 'Please enter full name.',
             'password.regex' => 'password must include 1 special charcter and 1 capital letter'
         ]
     );
