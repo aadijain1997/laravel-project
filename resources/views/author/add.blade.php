@@ -9,7 +9,7 @@
         <div class="form-group">
             <label>Name of author </label><br>
             <select class="selectpicker form-control" multiple  name="name[]">
-                <option value="aditya" selected="selected">aditya</option>
+                <option value="aditya" selected="selected">{{ Auth::user()->name }}</option>
                 <option value="ashish">Ashish</option>
                 <option value="ankit">Ankit</option>
             </select>
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" name="title" id="title" class="form-control" required placeholder="Enter title">
+            <input type="text" name="title" id="title" required class="form-control"  placeholder="Enter title">
             <span class="help-block title"></span>
         </div>
         <div class="form-group">
@@ -28,7 +28,7 @@
         <div class="form-group">
             <label>Reviewer Name </label>
             <!-- <input type="text" name="reviewer_name" id="reviewer_name" class="form-control" required> -->
-            <select class="form-control"  name="reviewer_name" id="reviewer_name" required>
+            <select class="form-control" required name="reviewer_name" id="reviewer_name" >
                 <option ></option>
                 <option value="reviewer">reviewer</option>
                 <option value="reviewer1">reviewer1</option>
@@ -37,7 +37,7 @@
         </div>
         <div class="form-group">
             <label>Price </label>
-            <input type="number" name="price" id="price" class="form-control" required placeholder="Enter Price">
+            <input type="number" name="price" id="price" required class="form-control" placeholder="Enter Price">
             <span class="help-block file"></span>
         </div>
         <button type="submit" class="btn btn-primary ">Submit</button>

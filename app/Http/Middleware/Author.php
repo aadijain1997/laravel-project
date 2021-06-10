@@ -20,9 +20,12 @@ class Author
             return redirect()->route('login');
         }
 
-        if (Auth::user()->role == 'author') {
+        if (Auth::check() && Auth::user()->role == 'author') {
             return $next($request);
         }
+        else{
+            return redirect()->route('login');
+        };
     }
 
 }

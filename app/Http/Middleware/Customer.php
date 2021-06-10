@@ -19,8 +19,11 @@ class Customer
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        if (Auth::user()->role == 'customer') {
+        if (Auth::check() && Auth::user()->role == 'customer') {
             return $next($request);
+        }
+        else{
+            return redirect()->route('login');
         }
     }
 

@@ -92,7 +92,7 @@ function editform() {
    if (valid1) {
       $(document).on('click', '.edit', function (e) {
          $.ajax({
-            url: "/edit/form/",
+            url: "/edit/form",
             TYPE: 'GET',
             data: {
                id: $(".userid").val(),

@@ -19,8 +19,11 @@ class Reviewer1
         if (!Auth::check()) {
             return redirect()->route('login');
         }
-        if (Auth::user()->role == 'reviewer1') {
+        if (Auth::check() && Auth::user()->role == 'reviewer1') {
             return $next($request);
+        }
+        else{
+            return redirect()->route('login');
         }
     }
 }

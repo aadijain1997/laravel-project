@@ -30,6 +30,7 @@ class AuthorController extends Controller
 
     function authoradd(Request $req)
     {
+
         $resto = new author;
         $resto->name = $req->input('name');
         $resto->name = implode(',', $resto->name);

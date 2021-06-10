@@ -3,18 +3,22 @@
 @section('content')
 <h1>Edit users</h1>
 <div class="col-sm-6">
-    <form class="formedit">
+    <form method="post" action="/edit/form/{{$data->id}}">
         @csrf
         <input type="hidden" class="userid" value="{{$data->id}}">
         <div class="form-group editname">
             <label>Name </label>
             <input type="text" name="name" id="name" class="form-control editname" value="{{$data->name}}" placeholder="Enter name">
-            <span class="help-block name" ></span>
+            @error('name')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group editemail">
             <label>Email</label>
             <input type="email" name="email" id="email" class="form-control editemail" value="{{$data->email}}" placeholder="Enter email">
-            <span class="help-block email" ></span>
+            @error('email')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="form-group">
             <label>Role </label>
@@ -26,15 +30,12 @@
                 <option value="reviewer1" {{ old('role', $data->role) == 'reviewer1' ? 'selected' : '' }}>Reviewer1</option>
                 <option value="customer" {{ old('role', $data->role) == 'customer' ? 'selected' : '' }}>Customer</option>
             </select>
-            <span class="help-block role" ></span>
+            @error('role')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
        
-        <div class="form-group editpass">
-            <label>password </label>
-            <input type="password" name="password" id="password" class="form-control editpassword" value="{{$data->password}}" placeholder="Enter password">
-            <span class="help-block password" ></span>
-        </div>
-        <button type="button" class="btn btn-primary edit" onclick="editform();">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 

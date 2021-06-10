@@ -27,7 +27,7 @@ Route::group(['middleware'=>'admin'],function(){
     Route::post('/form/post','adminController@add');
     Route::get('/admin/delete/{id}','adminController@delete');
     Route::get('/admin/edit/{id}','adminController@edit');
-    Route::get('/edit/form/','adminController@update');
+    Route::post('/edit/form/{id}','adminController@update');
 });
 
 Route::group(['middleware'=>'author'],function(){
